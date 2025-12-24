@@ -2,7 +2,7 @@
 
 Landing page y plataforma de gestion para la reunion familiar Chamiza 2026 en Hacienda San Pedro Palomeque, Merida, Yucatan.
 
-## Configuracion
+## Configuracions
 
 ### 1. Variables de Entorno
 
