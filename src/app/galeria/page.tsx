@@ -247,10 +247,11 @@ export default function GaleriaPage() {
           <motion.div
             initial={{ y: 100 }}
             animate={{ y: 0 }}
-            className="bg-white w-full sm:max-w-md sm:rounded-2xl rounded-t-3xl p-6"
+            className="bg-white w-full sm:max-w-md sm:rounded-2xl rounded-t-3xl flex flex-col max-h-[80vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between mb-4">
+            {/* Fixed Header */}
+            <div className="flex items-center justify-between p-6 pb-4 border-b border-cream">
               <h2 className="text-lg font-semibold text-primary">
                 Subir Fotos
               </h2>
@@ -266,13 +267,14 @@ export default function GaleriaPage() {
               </button>
             </div>
 
-            {error && (
-              <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-600">
-                {error}
-              </div>
-            )}
+            {/* Scrollable Content */}
+            <div className="flex-1 overflow-y-auto p-6 pt-4 space-y-4">
+              {error && (
+                <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-600">
+                  {error}
+                </div>
+              )}
 
-            <div className="space-y-4">
               <Input
                 label="Tu nombre"
                 placeholder="Ej: Juan Perez"
@@ -336,7 +338,10 @@ export default function GaleriaPage() {
                   />
                 </label>
               </div>
+            </div>
 
+            {/* Fixed Footer with Button */}
+            <div className="p-6 pt-4 border-t border-cream pb-[max(1.5rem,env(safe-area-inset-bottom))]">
               <Button
                 className="w-full"
                 onClick={handleUpload}

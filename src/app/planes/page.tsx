@@ -378,10 +378,11 @@ export default function PlanesPage() {
               initial={{ y: 100 }}
               animate={{ y: 0 }}
               exit={{ y: 100 }}
-              className="bg-white w-full sm:max-w-md sm:rounded-2xl rounded-t-3xl p-6 max-h-[85vh] overflow-y-auto"
+              className="bg-white w-full sm:max-w-md sm:rounded-2xl rounded-t-3xl flex flex-col max-h-[80vh]"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between mb-4">
+              {/* Fixed Header */}
+              <div className="flex items-center justify-between p-6 pb-4 border-b border-cream">
                 <h2 className="text-lg font-semibold text-primary">
                   Nuevo Plan
                 </h2>
@@ -393,7 +394,8 @@ export default function PlanesPage() {
                 </button>
               </div>
 
-              <div className="space-y-4">
+              {/* Scrollable Content */}
+              <div className="flex-1 overflow-y-auto p-6 pt-4 space-y-4">
                 <Input
                   label="Tu nombre"
                   placeholder="Ej: Juan Perez"
@@ -461,7 +463,10 @@ export default function PlanesPage() {
                     }))
                   }
                 />
+              </div>
 
+              {/* Fixed Footer with Button */}
+              <div className="p-6 pt-4 border-t border-cream pb-[max(1.5rem,env(safe-area-inset-bottom))]">
                 <Button
                   className="w-full"
                   onClick={handleSubmit}
@@ -495,10 +500,11 @@ export default function PlanesPage() {
               initial={{ y: 100 }}
               animate={{ y: 0 }}
               exit={{ y: 100 }}
-              className="bg-white w-full sm:max-w-sm sm:rounded-2xl rounded-t-3xl p-6"
+              className="bg-white w-full sm:max-w-sm sm:rounded-2xl rounded-t-3xl flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between mb-4">
+              {/* Fixed Header */}
+              <div className="flex items-center justify-between p-6 pb-4 border-b border-cream">
                 <h2 className="text-lg font-semibold text-primary">
                   {joinModal.action === "join"
                     ? "Unirme al plan"
@@ -512,7 +518,8 @@ export default function PlanesPage() {
                 </button>
               </div>
 
-              <div className="space-y-4">
+              {/* Content */}
+              <div className="p-6 pt-4 space-y-4 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
                 <Input
                   label="Tu nombre"
                   placeholder="Ej: Juan Perez"
