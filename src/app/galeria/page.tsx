@@ -241,7 +241,7 @@ export default function GaleriaPage() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed inset-0 z-50 bg-black/50 flex items-end sm:items-center justify-center"
+          className="fixed inset-0 z-[60] bg-black/50 flex items-end sm:items-center justify-center"
           onClick={() => setShowUpload(false)}
         >
           <motion.div
