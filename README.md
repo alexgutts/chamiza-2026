@@ -13,7 +13,7 @@ Crea un archivo `.env.local` en la raiz del proyecto:
 NEXT_PUBLIC_SUPABASE_URL=tu_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_supabase_anon_key
 
-# Google Maps.
+# Google Maps
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=tu_google_maps_api_key
 
 # OpenAI
