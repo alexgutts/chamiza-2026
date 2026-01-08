@@ -72,3 +72,27 @@ export interface ChatMessage {
   role: "user" | "assistant";
   content: string;
 }
+
+export interface PublicChatMessage {
+  id: string;
+  author_name: string;
+  message: string;
+  created_at: string;
+}
+
+export interface GuestConfirmation {
+  id: string;
+  guest_name: string;
+  message?: string;
+  created_at: string;
+}
+
+export interface FamilyMember {
+  id: string;
+  first_name: string;
+  last_name: string;
+  second_last_name?: string;
+  mother_id?: string;
+  father_id?: string;
+  created_at: string;
+}

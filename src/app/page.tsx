@@ -9,6 +9,7 @@ import { PhotoGallery } from "@/components/PhotoGallery";
 import { FadeInUp } from "@/components/animations/FadeInUp";
 import { Button } from "@/components/ui/Button";
 import { AdminLoginModal } from "@/components/AdminLoginModal";
+import { GuestConfirmation } from "@/components/GuestConfirmation";
 import { useAdmin } from "@/contexts/AdminContext";
 import { supabase } from "@/lib/supabase";
 
@@ -156,6 +157,13 @@ export default function HomePage() {
                 Ver ubicacion en mapa
               </Button>
             </a>
+          </div>
+        </FadeInUp>
+
+        {/* Guest Confirmation */}
+        <FadeInUp delay={0.3}>
+          <div className="max-w-md mx-auto mt-6">
+            <GuestConfirmation />
           </div>
         </FadeInUp>
       </section>

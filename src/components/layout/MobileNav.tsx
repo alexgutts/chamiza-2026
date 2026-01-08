@@ -3,12 +3,13 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Image, Star, Calendar, Map } from "lucide-react";
+import { Home, Image, Star, Calendar, Map, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", icon: Home, label: "Inicio" },
   { href: "/galeria", icon: Image, label: "Galeria" },
+  { href: "/familia", icon: Users, label: "Familia" },
   { href: "/hospedaje", icon: Star, label: "Tips" },
   { href: "/planes", icon: Calendar, label: "Planes" },
   { href: "/mapa", icon: Map, label: "Mapa" },

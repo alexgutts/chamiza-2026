@@ -165,3 +165,79 @@ export async function uploadImage(
   if (error) throw error;
   return data;
 }
+
+export async function getChatMessages(limit: number = 50) {
+  const { data, error } = await supabase
+    .from("public_chat_messages")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .limit(limit);
+
+  if (error) throw error;
+  return data;
+}
+
+export async function addChatMessage(message: {
+  author_name: string;
+  message: string;
+}) {
+  const { data, error } = await supabase
+    .from("public_chat_messages")
+    .insert(message)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+export async function getGuestConfirmations() {
+  const { data, error } = await supabase
+    .from("guest_confirmations")
+    .select("*")
+    .order("created_at", { ascending: true });
+
+  if (error) throw error;
+  return data;
+}
+
+export async function addGuestConfirmation(confirmation: {
+  guest_name: string;
+  message?: string;
+}) {
+  const { data, error } = await supabase
+    .from("guest_confirmations")
+    .insert(confirmation)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+export async function getFamilyMembers() {
+  const { data, error } = await supabase
+    .from("family_members")
+    .select("*")
+    .order("created_at", { ascending: true });
+
+  if (error) throw error;
+  return data;
+}
+
+export async function addFamilyMember(member: {
+  first_name: string;
+  last_name: string;
+  second_last_name?: string;
+  mother_id?: string;
+  father_id?: string;
+}) {
+  const { data, error } = await supabase
+    .from("family_members")
+    .insert(member)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
