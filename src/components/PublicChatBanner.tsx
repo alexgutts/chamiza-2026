@@ -77,9 +77,15 @@ export function PublicChatBanner() {
 
       // Refresh messages
       await fetchMessages();
-    } catch (err) {
+    } catch (err: unknown) {
       console.error("Error sending message:", err);
-      alert("Error al enviar mensaje. Por favor intenta de nuevo.");
+
+      // Show detailed error message
+      let errorMessage = "Error al enviar mensaje. Por favor intenta de nuevo.";
+      if (err && typeof err === 'object' && 'message' in err) {
+        errorMessage = `Error: ${(err as { message: string }).message}`;
+      }
+      alert(errorMessage);
     } finally {
       setSubmitting(false);
     }

@@ -14,6 +14,8 @@ interface TreeNode {
 
 interface FamilyTreeProps {
   members: FamilyMember[];
+  onEdit?: (member: FamilyMember) => void;
+  onDelete?: (member: FamilyMember) => void;
 }
 
 const NODE_WIDTH = 160;
@@ -21,7 +23,7 @@ const NODE_HEIGHT = 80;
 const LEVEL_HEIGHT = 150;
 const SIBLING_SPACING = 40;
 
-export function FamilyTree({ members }: FamilyTreeProps) {
+export function FamilyTree({ members, onEdit, onDelete }: FamilyTreeProps) {
   const { nodes, connections, svgWidth, svgHeight } = useMemo(() => {
     if (members.length === 0) {
       return { nodes: [], connections: [], svgWidth: 400, svgHeight: 200 };
@@ -168,6 +170,8 @@ export function FamilyTree({ members }: FamilyTreeProps) {
               fill="white"
               stroke="#2B4B3C"
               strokeWidth="2"
+              className="cursor-pointer hover:fill-cream/50 transition-colors"
+              onClick={() => onEdit?.(node.member)}
             />
 
             {/* Name text */}
@@ -175,7 +179,7 @@ export function FamilyTree({ members }: FamilyTreeProps) {
               x={node.x}
               y={node.y - 10}
               textAnchor="middle"
-              className="text-sm font-semibold fill-primary"
+              className="text-sm font-semibold fill-primary pointer-events-none"
             >
               {node.member.first_name}
             </text>
@@ -183,7 +187,7 @@ export function FamilyTree({ members }: FamilyTreeProps) {
               x={node.x}
               y={node.y + 10}
               textAnchor="middle"
-              className="text-xs fill-primary/70"
+              className="text-xs fill-primary/70 pointer-events-none"
             >
               {node.member.last_name}
             </text>
@@ -192,7 +196,7 @@ export function FamilyTree({ members }: FamilyTreeProps) {
                 x={node.x}
                 y={node.y + 25}
                 textAnchor="middle"
-                className="text-xs fill-primary/70"
+                className="text-xs fill-primary/70 pointer-events-none"
               >
                 {node.member.second_last_name}
               </text>

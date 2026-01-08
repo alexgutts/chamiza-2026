@@ -35,7 +35,15 @@ export async function addRecommendation(recommendation: {
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {
+    console.error("Supabase error adding recommendation:", {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code,
+    });
+    throw error;
+  }
   return data;
 }
 
@@ -69,7 +77,15 @@ export async function addPlan(plan: {
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {
+    console.error("Supabase error adding plan:", {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code,
+    });
+    throw error;
+  }
   return data;
 }
 
@@ -80,7 +96,15 @@ export async function joinPlan(planId: string, participantName: string) {
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {
+    console.error("Supabase error joining plan:", {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code,
+    });
+    throw error;
+  }
   return data;
 }
 
@@ -91,7 +115,15 @@ export async function leavePlan(planId: string, participantName: string) {
     .eq("plan_id", planId)
     .eq("participant_name", participantName);
 
-  if (error) throw error;
+  if (error) {
+    console.error("Supabase error leaving plan:", {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code,
+    });
+    throw error;
+  }
 }
 
 export async function getPlaces() {
@@ -120,7 +152,15 @@ export async function addPlace(place: {
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {
+    console.error("Supabase error adding place:", {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code,
+    });
+    throw error;
+  }
   return data;
 }
 
@@ -143,13 +183,19 @@ export async function uploadImage(
   const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
 
   const { error: uploadError } = await supabase.storage
-    .from("bucket")
+    .from("gallery")
     .upload(fileName, file);
 
-  if (uploadError) throw uploadError;
+  if (uploadError) {
+    console.error("Supabase error uploading image to storage:", {
+      message: uploadError.message,
+      name: uploadError.name,
+    });
+    throw uploadError;
+  }
 
   const { data: urlData } = supabase.storage
-    .from("bucket")
+    .from("gallery")
     .getPublicUrl(fileName);
 
   const { data, error } = await supabase
@@ -162,7 +208,15 @@ export async function uploadImage(
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {
+    console.error("Supabase error adding gallery image record:", {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code,
+    });
+    throw error;
+  }
   return data;
 }
 
@@ -187,7 +241,15 @@ export async function addChatMessage(message: {
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {
+    console.error("Supabase error adding chat message:", {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code,
+    });
+    throw error;
+  }
   return data;
 }
 
@@ -211,7 +273,15 @@ export async function addGuestConfirmation(confirmation: {
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {
+    console.error("Supabase error adding guest confirmation:", {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code,
+    });
+    throw error;
+  }
   return data;
 }
 
@@ -238,6 +308,60 @@ export async function addFamilyMember(member: {
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {
+    console.error("Supabase error adding family member:", {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code,
+    });
+    throw error;
+  }
   return data;
+}
+
+export async function updateFamilyMember(
+  id: string,
+  updates: {
+    first_name?: string;
+    last_name?: string;
+    second_last_name?: string;
+    mother_id?: string;
+    father_id?: string;
+  }
+) {
+  const { data, error } = await supabase
+    .from("family_members")
+    .update(updates)
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error("Supabase error updating family member:", {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code,
+    });
+    throw error;
+  }
+  return data;
+}
+
+export async function deleteFamilyMember(id: string) {
+  const { error } = await supabase
+    .from("family_members")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    console.error("Supabase error deleting family member:", {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code,
+    });
+    throw error;
+  }
 }
