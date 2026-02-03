@@ -147,7 +147,7 @@ export default function HomePage() {
             </div>
 
             <a
-              href="https://www.google.com/maps/search/?api=1&query=20.9226,-89.6524"
+              href="https://maps.app.goo.gl/zm1f9EbLxVdwoBDT8"
               target="_blank"
               rel="noopener noreferrer"
               className="block mt-6"
