@@ -24,6 +24,13 @@ export default {
           light: "#D4B87A",
           dark: "#A4833A",
         },
+        coffee: {
+          DEFAULT: "#6F4E37",
+          light: "#A67B5B",
+          dark: "#4A3228",
+          cream: "#D2B48C",
+          milk: "#F5E6D3",
+        },
       },
       fontFamily: {
         serif: ["Georgia", "Cambria", "serif"],
