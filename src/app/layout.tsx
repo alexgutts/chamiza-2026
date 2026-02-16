@@ -3,6 +3,7 @@ import { MobileNav } from "@/components/layout/MobileNav";
 import { Header } from "@/components/layout/Header";
 import { ChatAssistant } from "@/components/ChatAssistant";
 import { PublicChatBanner } from "@/components/PublicChatBanner";
+import { AIChatMerida } from "@/components/AIChatMerida";
 import { AdminProvider } from "@/contexts/AdminContext";
 import "./globals.css";
 
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-cream">
         <AdminProvider>
           <Header />
+          <AIChatMerida />
           <PublicChatBanner />
           <main className="pb-20">{children}</main>
           <ChatAssistant />
